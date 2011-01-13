@@ -1,32 +1,22 @@
-<h1>Listing servers</h1>
+<h1>Known Game Servers</h1>
 
 <table>
   <tr>
-    <th>First seen at</th>
-    <th>Hostname</th>
-    <th>Port</th>
+    <th>Address</th>
     <th>Title</th>
-    <th>Beat counter</th>
+    <th>First seen at</th>
+    <th>Last beat at</th>
     <th>Game mode</th>
-    <th>Key</th>
   </tr>
 
-<% @servers.each do |server| %>
+<% @servers.each do |server| -%>
   <tr>
-    <td><%=h server.first_seen_at %></td>
-    <td><%=h server.hostname %></td>
-    <td><%=h server.port %></td>
+    <td><%=h server.hostname %>:<%=h server.port %></td>
     <td><%=h server.title %></td>
-    <td><%=h server.beat_counter %></td>
+    <td><%=h server.created_at %></td>
+    <td><%=h server.updated_at %></td>
     <td><%=h server.game_mode %></td>
-    <td><%=h server.key %></td>
-    <td><%= link_to 'Show', server %></td>
-    <td><%= link_to 'Edit', edit_server_path(server) %></td>
-    <td><%= link_to 'Destroy', server, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-<% end %>
+<% end -%>
 </table>
 
-<br />
-
-<%= link_to 'New server', new_server_path %>
