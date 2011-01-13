@@ -1,0 +1,40 @@
+<h1>Editing server</h1>
+
+<% form_for(@server) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :first_seen_at %><br />
+    <%= f.datetime_select :first_seen_at %>
+  </p>
+  <p>
+    <%= f.label :hostname %><br />
+    <%= f.text_field :hostname %>
+  </p>
+  <p>
+    <%= f.label :port %><br />
+    <%= f.text_field :port %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :beat_counter %><br />
+    <%= f.text_field :beat_counter %>
+  </p>
+  <p>
+    <%= f.label :game_mode %><br />
+    <%= f.text_field :game_mode %>
+  </p>
+  <p>
+    <%= f.label :key %><br />
+    <%= f.text_field :key %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @server %> |
+<%= link_to 'Back', servers_path %>

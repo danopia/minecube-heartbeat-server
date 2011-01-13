@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  first_seen_at: 2011-01-12 23:32:46
+  hostname: MyString
+  port: 1
+  title: MyString
+  beat_counter: 1
+  game_mode: 1
+  key: MyString
+
+two:
+  first_seen_at: 2011-01-12 23:32:46
+  hostname: MyString
+  port: 1
+  title: MyString
+  beat_counter: 1
+  game_mode: 1
+  key: MyString
