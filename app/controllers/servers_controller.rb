@@ -41,8 +41,12 @@ class ServersController < ApplicationController
     @server.port = (params[:port] || 28997).to_i
     @server.title = params[:title] || "New Server"
     @server.game_mode = nil
-      
-    render :text => @server.key
+    
+    if @server.save
+      render :text => @server.key
+    else
+      render :text => 'Error saving record', :status => 500
+    end
   end
 
   # GET /servers/new
