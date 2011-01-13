@@ -1,4 +1,8 @@
+require 'digest/md5'
+
 class ServersController < ApplicationController
+  protect_from_forgery :except => :beat
+
   # GET /servers
   # GET /servers.xml
   def index
@@ -21,9 +25,29 @@ class ServersController < ApplicationController
     end
   end
 
+  # POST /beat/
+  # POST /beat/key
+  def beat
+    if params[:key]
+      @server = Server.find_by_key params[:key]
+      @server.beat_counter += 1
+    else
+      @server = Server.new
+      @server.key ||= Digest::MD5.hexdigest(rand.to_s)
+      @server.beat_counter = 1
+    end
+    
+    @server.hostname = params[:hostname] || request.remote_ip
+    @server.port = (params[:port] || 28997).to_i
+    @server.title = params[:title] || "New Server"
+    @server.game_mode = nil
+      
+    render :text => @server.key
+  end
+
   # GET /servers/new
   # GET /servers/new.xml
-  def new
+  def newX
     @server = Server.new
 
     respond_to do |format|
@@ -33,13 +57,13 @@ class ServersController < ApplicationController
   end
 
   # GET /servers/1/edit
-  def edit
+  def editX
     @server = Server.find(params[:id])
   end
 
   # POST /servers
   # POST /servers.xml
-  def create
+  def createX
     @server = Server.new(params[:server])
 
     respond_to do |format|
@@ -55,7 +79,7 @@ class ServersController < ApplicationController
 
   # PUT /servers/1
   # PUT /servers/1.xml
-  def update
+  def updateX
     @server = Server.find(params[:id])
 
     respond_to do |format|
@@ -71,7 +95,7 @@ class ServersController < ApplicationController
 
   # DELETE /servers/1
   # DELETE /servers/1.xml
-  def destroy
+  def destroyX
     @server = Server.find(params[:id])
     @server.destroy
 
