@@ -14,6 +14,13 @@ class ServersController < ApplicationController
     end
   end
 
+  # GET /servers.txt
+  def plaintext
+    @servers = Server.all
+
+    render :text => @servers.map{|s| "#{s.hostname}:#{s.port}" }.join("\n")
+  end
+
   # GET /servers/1
   # GET /servers/1.xml
   def show
