@@ -3,10 +3,11 @@ require 'digest/md5'
 class ServersController < ApplicationController
   protect_from_forgery :except => :beat
 
+  # GET /
   # GET /servers
   # GET /servers.xml
   def index
-    @servers = Server.all
+    @servers = Server
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +17,7 @@ class ServersController < ApplicationController
 
   # GET /servers.txt
   def plaintext
-    @servers = Server.all
+    @servers = Server.beating
 
     render :text => @servers.map{|s| "#{s.hostname}:#{s.port}" }.join("\n")
   end
@@ -24,7 +25,7 @@ class ServersController < ApplicationController
   # GET /servers/1
   # GET /servers/1.xml
   def show
-    @server = Server.find(params[:id])
+    @server = Server.find params[:id]
 
     respond_to do |format|
       format.html # show.html.erb
