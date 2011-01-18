@@ -7,7 +7,7 @@ class ServersController < ApplicationController
   # GET /servers
   # GET /servers.xml
   def index
-    @servers = Server
+    @servers = Server.beating
 
     respond_to do |format|
       format.html # index.html.erb
