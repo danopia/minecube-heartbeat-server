@@ -1,21 +1,21 @@
-<h1>Known Game Servers</h1>
+<h1>Beating Game Servers</h1>
 
 <table>
   <tr>
     <th>Address</th>
+    <th>Port</th>
     <th>Title</th>
-    <th>First seen at</th>
-    <th>Last beat at</th>
-    <th>Game mode</th>
+    <th>First seen</th>
+    <th>Last seen</th>
   </tr>
 
 <% @servers.each do |server| -%>
   <tr>
-    <td><%=h server.hostname %>:<%=h server.port %></td>
+    <td><%=h server.hostname %></td>
+    <td><%=  server.port %></td>
     <td><%=h server.title %></td>
-    <td><%=h server.created_at %></td>
-    <td><%=h server.updated_at %></td>
-    <td><%=h server.game_mode %></td>
+    <td><%=time_ago_in_words server.created_at %></td>
+    <td><%=time_ago_in_words server.updated_at %></td>
   </tr>
 <% end -%>
 </table>
