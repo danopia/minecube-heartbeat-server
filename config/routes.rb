@@ -1,11 +1,11 @@
 HeartbeatServer::Application.routes.draw do
-  match '/servers.txt', :to => 'servers#plaintext', :conditions => { :method => :get }
+  match 'servers.txt' => 'servers#plaintext'#, :conditions => { :method => :get }
 
   resources :servers
 
-  match '/beat/:key', :to => 'servers#beat', :conditions => { :method => :post }
-  match '/beat',      :to => 'servers#beat', :conditions => { :method => :post }
-  match '/',          :to => 'servers#index'
+  match 'beat/:key' => 'servers#beat'#, :conditions => { :method => :post }
+  match 'beat' => 'servers#beat'#, :conditions => { :method => :post }
+  root :to => 'servers#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
