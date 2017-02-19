@@ -1,0 +1,9 @@
+Basecamp::Application.routes do
+  match '/servers.txt', :to => 'servers#plaintext', :conditions => { :method => :get }
+
+  #resources :servers
+
+  match '/beat/:key', :to => 'servers#beat', :conditions => { :method => :post }
+  match '/beat',      :to => 'servers#beat', :conditions => { :method => :post }
+  match '/',          :to => 'servers#index'
+end
