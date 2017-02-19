@@ -29,6 +29,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-postgresql-adapter
+  bundler
   pg
   rails (= 2.3.8)
 
